@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+        <link  href="{% static 'auctions/cards.css' %}" rel="stylesheet">
+        <link href='https://css.gg/profile.css' rel='stylesheet'>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    </head>
+    <style>
+     .check{
+
+     background: #FFEFBA;  /* fallback for old browsers */
+     background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        margin:-10px;
+
+
+
+     }
+
+     .nav {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+    </style>
+   
+
+<div class="check">
+    <body>
+
+        <h1 style="font-size:20px;color:black;">BID|NOW<h6><h1>
+        <div style="float:right">
+
+        </div>
+        <ul class="nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'auctions:index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auctions:profile' %}">Profile</a>
+                </li>
+            {% if user.is_authenticated %}
+
+                <li class="nav-item">
+
+                     <a class="nav-link" href="{% url 'auctions:add' %}">Add Item</a>
+                </li>
+
+
+                <li class="nav-item">
+                   <a class="nav-link" href="{% url 'auctions:watchlist' %}">Watchlist</a>
+                 </li>
+                <li class="nav-item">
+                  </i><a class="nav-link" href="{% url 'auctions:auctions_history' %}">Auctions History</a>
+                   </li>
+            <li class="nav-item">
+                 <a class="nav-link" href="{% url 'auctions:logout' %}">Log Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auctions:login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auctions:register' %}">Register</a>
+                </li>
+
+           {% endif %}
+             <li class="nav-item">
+               <a class="nav-link" href="{% url 'auctions:category_list' %}">Categories</a>
+            </li>
+        </ul>
+        <hr>
+
+</div>
+
+        {% block body %}
+
+        {% endblock %}
+
+    </body>
+
+<</html>
